@@ -1,0 +1,53 @@
+<div class="jumbotron" ng-controller="MainCtrl">
+    <div>
+          <a class="btn"  align="left" href="{{baseBEAUrl}}">Add new study in BEA</a>
+    </div>
+    
+    
+    <div>
+        <uif-table>
+        <uif-table-head>
+            <uif-table-row>
+                <uif-table-row-select></uif-table-row-select>
+                <uif-table-header uif-order-by="reference">Reference</uif-table-header>
+                <uif-table-header uif-order-by="zone">Zone</uif-table-header>
+                <uif-table-header uif-order-by="libelle_pays">Country</uif-table-header>
+                <uif-table-header uif-order-by="libelle_permis">Licence</uif-table-header>
+                <uif-table-header uif-order-by="libelle_etude">Title</uif-table-header>
+                <uif-table-header uif-order-by="statut_etude" >Status</uif-table-header>
+                <uif-table-header uif-order-by="util_nom">Project Leader</uif-table-header>
+                <uif-table-header>BEA </uif-table-header>
+                <uif-table-header> W://</uif-table-header>
+                 <uif-table-header> </uif-table-header>
+                
+
+                
+            </uif-table-row>
+        </uif-table-head>
+        <uif-table-body>
+            <uif-table-row ng-repeat="study in studies | orderBy:table.orderBy:!table.orderAsc" uif-item="study" >
+                <uif-table-row-select></uif-table-row-select>
+                <uif-table-cell>{{study.reference}}</uif-table-cell>
+                <uif-table-cell align="left">{{study.zone}}</uif-table-cell>
+                <uif-table-cell align="left">{{study.libelle_pays}}</uif-table-cell>
+                <uif-table-cell align="left">{{study.libelle_permis}}</uif-table-cell>
+                <uif-table-cell align="left">{{study.libelle_etude}}</uif-table-cell>
+                <uif-table-cell align="left">{{study.statut_etude}}</uif-table-cell>
+                <uif-table-cell align="left">{{study.util_nom}} {{study.util_prenom}}</uif-table-cell>
+                <uif-table-cell>
+                    <a ng-href="{{url}}{{study.id}}">Link</a>
+                </uif-table-cell>
+                <uif-table-cell>
+                   <input  ng-class="study.created == 0 ? '' : 'open' " type="button" ng-value="study.created == 0 ? 'CREATE' : 'OPEN'"  ng-click="study.created == 0 ? createStudy(study) : openStudy()" class="w"/>
+                </uif-table-cell>
+         
+            </uif-table-row>
+        </uif-table-body>
+    </uif-table>
+    
+    </div>
+    
+    
+    
+</div>
+
